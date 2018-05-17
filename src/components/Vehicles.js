@@ -9,14 +9,14 @@ class Vehicles extends React.Component {
     }
   }
 
-  componentDidMount(){
-    fetch('https://swapi.co/api/vehicles/').then(response => {
-      return response.json();
-    }).then(ships => {
-      this.setState({vehicles: ships.results.map(ship=>{
-        return ship;
-      })})
-    })
+  async componentDidMount(){
+    let data = await fetch('https://swapi.co/api/vehicles/')
+    let response = await data.json();
+    let results = response.results;
+    this.setState({
+      vehicles: results.map(ship=>{
+      return ship;
+    })})
   }
 
   render(){

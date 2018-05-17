@@ -9,13 +9,14 @@ class Species extends React.Component {
     }
   }
 
-  componentDidMount(){
-    fetch('https://swapi.co/api/species/').then(response => {
-      return response.json();
-    }).then(creatures => {
-      this.setState({species: creatures.results.map(creature => {
-        return creature;
-      })})
+  async componentDidMount(){
+    const data = await fetch('https://swapi.co/api/species/');
+    const response = await data.json();
+    const results = response.results;
+    this.setState({
+      species: results.map(spec => {
+        return spec;
+      })
     })
   }
 

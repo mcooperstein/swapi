@@ -9,16 +9,13 @@ class Planets extends React.Component {
     }
   }
 
-  componentDidMount(){
-    fetch('https://swapi.co/api/planets/').then(response => {
-      return response.json();
-    }).then(worlds => {
-      this.setState({planets:worlds.results.map(world => {
-        return world
-      })})
-      // console.log(worlds.results.map(world => {
-      //   return world.name
-      // }))
+  async componentDidMount(){
+    const data = await fetch('https://swapi.co/api/planets/')
+    const response = await data.json();
+    const results = response.results;
+
+    this.setState({
+      planets: results.map(planet => planet)
     })
   }
 

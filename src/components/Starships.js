@@ -9,13 +9,13 @@ class Starships extends React.Component {
     }
   }
 
-  componentDidMount(){
-    fetch('https://swapi.co/api/starships/').then(response => {
-      return response.json();
-    }).then(ships => {
-      this.setState({ships: ships.results.map(ship=>{
+  async componentDidMount(){
+    const data = await fetch('https://swapi.co/api/starships/');
+    const response = await data.json();
+    this.setState({
+      ships: response.results.map(ship => {
         return ship;
-      })})
+      })
     })
   }
 
